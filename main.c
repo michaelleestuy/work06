@@ -3,6 +3,8 @@
 
 struct node {int i; struct node * next;};
 struct node* printhelper(struct node*);
+struct node* freehelper(struct node*);
+
 
 void print_list(struct node* a){
   printf("{ ");
@@ -28,6 +30,27 @@ struct node * insert_front(struct node * a, int b){
   return c;
 }
 
+struct node * free_list(struct node* a){
+  if(!a){
+    return a;
+  }
+
+  
+  free_list(a->next);
+  free(a);
+  a = 0;
+  return a;
+}
+
+
+  
+
+
+
+
+					 
+
+
 
 int main(){
 
@@ -41,5 +64,7 @@ int main(){
   struct node* c = insert_front(b, 3);
   print_list(c);
 
-
+  free_list(c);
+  
+  
 }
