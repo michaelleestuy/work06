@@ -33,14 +33,13 @@ struct node * insert_front(struct node * a, int b){
 
 struct node * free_list(struct node* a){
   if(!a){
-    return a;
+    return 0;
   }
 
   
   free_list(a->next);
   free(a);
-  a = 0;
-  return a;
+  return 0;
 }
 
 
@@ -55,11 +54,10 @@ struct node * free_list(struct node* a){
 
 int main(){
 
-  struct node a;
-  a.i = 1;
-  print_list(&a);
+  struct node* a = 0;
+  a = insert_front(a, 1);
 
-  struct node* b = insert_front(&a, 2);
+  struct node* b = insert_front(a, 2);
   print_list(b);
 
   struct node* c = insert_front(b, 3);
@@ -67,5 +65,5 @@ int main(){
 
   free_list(c);
   
-  
+  return 0;
 }
